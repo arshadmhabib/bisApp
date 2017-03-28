@@ -1,53 +1,49 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, { Component } from 'react';
+import React from 'react';
 import {
   AppRegistry,
-  StyleSheet,
   Text,
-  View
+  View,
+  Button,
 } from 'react-native';
+import { StackNavigator, TabNavigator } from 'react-navigation';
+import HomeScreen from './app';
 
-export default class bisApp extends Component {
+class ChatScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Chat with Lucy',
+  };
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <View>
+        <Text>Chat with Lucy</Text>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+class RecentChatsScreen extends React.Component {
+  render() {
+    return <Text>List of recent chats</Text>
+  }
+}
+
+class AllContactsScreen extends React.Component {
+  render() {
+    return <Text>List of all contacts</Text>
+  }
+}
+
+const MainScreenNavigator = TabNavigator({
+  Recent: { screen: RecentChatsScreen },
+  All: { screen: AllContactsScreen },
+});
+MainScreenNavigator.navigationOptions = {
+  title: 'My Chats',
+};
+
+const SimpleApp = StackNavigator({
+  Home: { screen: MainScreenNavigator },
+  Chat: { screen: ChatScreen },
 });
 
-AppRegistry.registerComponent('bisApp', () => bisApp);
+AppRegistry.registerComponent('bisApp', () => SimpleApp);
