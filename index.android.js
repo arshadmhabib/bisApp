@@ -1,8 +1,6 @@
-import { AppRegistry } from 'react-native';
 
-// @todo remove when RN upstream is fixed
-console.ignoredYellowBox = ['Warning: Failed propType: SceneView'];
+import { AppRegistry, StatusBar } from 'react-native';
+import setup from './js/setup';
 
-import BIS from './src/app';
-
-AppRegistry.registerComponent('bisApp', () => BIS);
+StatusBar.setBarStyle('default');
+AppRegistry.registerComponent('NativebaseKitchenSink', setup);
