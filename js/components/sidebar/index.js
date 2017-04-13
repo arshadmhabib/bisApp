@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Image, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import { Content, Text, List, ListItem, Icon, Container, Left, Right, Badge, Button, View, StyleProvider, getTheme, variables } from 'native-base';
+import { Content, Title, Text, List, ListItem, Icon, Container, Left, Right, Badge, Button, View, StyleProvider, getTheme, variables } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import material from '../../../native-base-theme/variables/material';
@@ -12,42 +12,42 @@ import styles from './style';
 
 const drawerCover = require('../../../img/coverflow.png');
 
-const drawerImage = require('../../../img/logo-kitchen-sink.png');
+const drawerImage = require('../../../img/BISMobile.png');
 
 const datas = [
   {
     name: 'Settings',
-    route: '3',
-    icon: 'phone-portrait',
+    route: 'settings',
+    icon: 'settings',
     bg: '#DA4437',
   },
   {
     name: 'Prayers',
-    route: '0',
+    route: 'Prayers',
     icon: 'moon',
     bg: '#DA4437',
   },
   {
     name: 'News',
-    route: '1',
+    route: 'News',
     icon: 'megaphone',
     bg: '#DA4437',
   },
   {
     name: 'Business',
-    route: '2',
+    route: 'Business',
     icon: 'cash',
     bg: '#DA4437',
   },
   {
     name: 'Clinic',
-    route: '3',
+    route: 'Clinic',
     icon: 'medkit',
     bg: '#DA4437',
   },
   {
     name: 'Contact',
-    route: '4',
+    route: 'Contact',
     icon: 'contact',
     bg: '#DA4437',
   },
@@ -82,11 +82,7 @@ class SideBar extends Component {
           style={{ flex: 1, backgroundColor: '#fff', top: -1 }}
         >
           <Image source={drawerCover} style={styles.drawerCover}>
-            <Image
-              square
-              style={styles.drawerImage}
-              source={drawerImage}
-            />
+
           </Image>
           <List
             dataArray={datas} renderRow={data =>
