@@ -19,11 +19,6 @@ class SettingsTab extends Component {
     super(props);
     this.state = {
       mosques: 'Hoover',
-      prayers: 'Tab1',
-      news: 'Tab2',
-      business: 'Tab3',
-      clinic: 'Tab4',
-      contact: 'Tab5',
     };
     AsyncStorage.getItem('mosques').then((settingsStr)=>{
       if(settingsStr){
@@ -32,67 +27,13 @@ class SettingsTab extends Component {
         AsyncStorage.setItem('mosques', this.state.mosques);
       }
     });
-    AsyncStorage.getItem('prayers').then((settingsStr)=>{
-      if(settingsStr){
-        this.setState({prayers: settingsStr});
-        AsyncStorage.setItem('prayers', this.state.prayers);
-      }
-    });
-    AsyncStorage.getItem('news').then((settingsStr)=>{
-      if(settingsStr){
-        this.setState({news: settingsStr});
-      }else{
-        AsyncStorage.setItem('news', this.state.news);
-      }
-    });
-    AsyncStorage.getItem('business').then((settingsStr)=>{
-      if(settingsStr){
-        this.setState({business: settingsStr});
-      }else{
-        AsyncStorage.setItem('business', this.state.business);
-      }
-    });
-    AsyncStorage.getItem('clinic').then((settingsStr)=>{
-      if(settingsStr){
-        this.setState({clinic: settingsStr});
-      }else{
-        AsyncStorage.setItem('clinic', this.state.clinic);
-      }
-    });
-    AsyncStorage.getItem('contact').then((settingsStr)=>{
-      if(settingsStr){
-        this.setState({contact: settingsStr});
-      }else{
-        AsyncStorage.setItem('contact', this.state.contact);
-      }
-    });
   }
 
   onValueChange(key, value) {
     var obj = {};
   	obj[key] = value;
-  	var settingsStates = this.state;
-  	var obj2 = {};
-  	Object.keys(settingsStates).map(function(currentState,i) {
-  		if(settingsStates[currentState] === value){
-  			obj2[currentState] = 'None';
-  		}
-  	})
-
-  	this.setState(obj2);
   	this.setState(obj);
-  }
-
-  saveSettings(){
-    for(key of Object.keys(this.state)){
-      if(this.state[key] === 'None'){
-        return;
-      }
-    }
-    for(key of Object.keys(this.state)){
-      AsyncStorage.setItem(key, this.state[key]);
-    }
-    console.log('Save Values');
+    AsyncStorage.setItem(key, value);
   }
 
   render() {
@@ -139,137 +80,6 @@ class SettingsTab extends Component {
               </Picker>
             </Right>
           </ListItem>
-        	<Separator bordered noTopBorder>
-                <Text style={{fontSize: 14}}>Tab Order</Text>
-            </Separator>
-          <ListItem icon>
-            <Left>
-              <Button light>
-                <Icon name="list" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>Prayers</Text>
-            </Body>
-            <Right>
-              <Picker
-                iosHeader="Select one"
-                mode="dropdown"
-                style={{ width:(Platform.OS === 'ios') ? undefined : 120 }}
-                selectedValue={this.state.prayers}
-                onValueChange={this.onValueChange.bind(this,'prayers')}>
-                <Item label="None" value="None" />
-                <Item label="Tab 1" value="Tab1" />
-                <Item label="Tab 2" value="Tab2" />
-                <Item label="Tab 3" value="Tab3" />
-                <Item label="Tab 4" value="Tab4" />
-                <Item label="Tab 5" value="Tab5" />
-              </Picker>
-            </Right>
-          </ListItem>
-          <ListItem icon>
-            <Left>
-              <Button light>
-                <Icon name="list" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>News</Text>
-            </Body>
-            <Right>
-              <Picker
-                iosHeader="Select one"
-                mode="dropdown"
-                style={{ width:(Platform.OS === 'ios') ? undefined : 120 }}
-                selectedValue={this.state.news}
-                onValueChange={this.onValueChange.bind(this,'news')}>
-                <Item label="None" value="None" />
-                <Item label="Tab 1" value="Tab1" />
-                <Item label="Tab 2" value="Tab2" />
-                <Item label="Tab 3" value="Tab3" />
-                <Item label="Tab 4" value="Tab4" />
-                <Item label="Tab 5" value="Tab5" />
-              </Picker>
-            </Right>
-          </ListItem>
-          <ListItem icon>
-            <Left>
-              <Button light>
-                <Icon name="list" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>Business</Text>
-            </Body>
-            <Right>
-              <Picker
-                iosHeader="Select one"
-                mode="dropdown"
-                style={{ width:(Platform.OS === 'ios') ? undefined : 120 }}
-                selectedValue={this.state.business}
-                onValueChange={this.onValueChange.bind(this,'business')}>
-                <Item label="None" value="None" />
-                <Item label="Tab 1" value="Tab1" />
-                <Item label="Tab 2" value="Tab2" />
-                <Item label="Tab 3" value="Tab3" />
-                <Item label="Tab 4" value="Tab4" />
-                <Item label="Tab 5" value="Tab5" />
-              </Picker>
-            </Right>
-          </ListItem>
-          <ListItem icon>
-            <Left>
-              <Button light>
-                <Icon name="list" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>Clinic</Text>
-            </Body>
-            <Right>
-              <Picker
-                iosHeader="Select one"
-                mode="dropdown"
-                style={{ width:(Platform.OS === 'ios') ? undefined : 120 }}
-                selectedValue={this.state.clinic}
-                onValueChange={this.onValueChange.bind(this,'clinic')}>
-                <Item label="None" value="None" />
-                <Item label="Tab 1" value="Tab1" />
-                <Item label="Tab 2" value="Tab2" />
-                <Item label="Tab 3" value="Tab3" />
-                <Item label="Tab 4" value="Tab4" />
-                <Item label="Tab 5" value="Tab5" />
-              </Picker>
-            </Right>
-          </ListItem>
-          <ListItem icon>
-            <Left>
-              <Button light>
-                <Icon name="list" />
-              </Button>
-            </Left>
-            <Body>
-              <Text>Contact</Text>
-            </Body>
-            <Right>
-              <Picker
-                iosHeader="Select one"
-                mode="dropdown"
-                style={{ width:(Platform.OS === 'ios') ? undefined : 120 }}
-                selectedValue={this.state.contact}
-                onValueChange={this.onValueChange.bind(this,'contact')}>
-                <Item label="None" value="None" />
-                <Item label="Tab 1" value="Tab1" />
-                <Item label="Tab 2" value="Tab2" />
-                <Item label="Tab 3" value="Tab3" />
-                <Item label="Tab 4" value="Tab4" />
-                <Item label="Tab 5" value="Tab5" />
-              </Picker>
-            </Right>
-          </ListItem>
-          <Button onPress={() => this.saveSettings()} >
-            <Text>Save</Text>
-          </Button>
         </Content>
       </Container>
     );
