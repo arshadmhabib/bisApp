@@ -49,7 +49,7 @@ class SettingsTab extends Component {
             <Image source={require('./../../img/bis.png')} style={{width: 40, height: 40}} />
           </Left>
           <Body>
-            <Title>Settings</Title>
+            <Title style={{ color: '#FFF' }}>Settings</Title>
           </Body>
           <Right>
             <Button transparent onPress={this.props.openDrawer}>
