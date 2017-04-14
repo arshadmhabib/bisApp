@@ -19,7 +19,7 @@ This repo is modeled after the native-base example kitchen sink
 - native-base-theme - the theme elements and styles
 - node_modules - all the modules to make it work, the package wouldnt compile with fresh compile
 
-##Getting started
+## Getting started
 1) npm install
 2) react-native link
 3) react-native run-ios(run-android)
