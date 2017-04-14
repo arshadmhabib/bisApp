@@ -90,9 +90,8 @@ class AppNavigator extends Component {
           />
           <RouterWithRedux>
             <Scene key="root" hideNavBar>
-              <Scene key="Settings" component={SettingsTab} initial={true}/>
-              <Scene key="Start" component={TabContainer}/>
-              <Scene key="Prayers" component={TabContainer} />
+              <Scene key="Settings" component={SettingsTab}/>
+              <Scene key="Prayers" component={TabContainer} initial={true}/>
               <Scene key="News" component={TabContainer} />
               <Scene key="Business" component={TabContainer} />
               <Scene key="Clinic" component={TabContainer} />

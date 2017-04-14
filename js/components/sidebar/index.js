@@ -12,8 +12,6 @@ import styles from './style';
 
 const drawerCover = require('../../../img/coverflow.png');
 
-const drawerImage = require('../../../img/BISMobile.png');
-
 const datas = [
   {
     name: 'Settings',
@@ -81,17 +79,15 @@ class SideBar extends Component {
           bounces={false}
           style={{ flex: 1, backgroundColor: '#fff', top: -1 }}
         >
-          <Image source={drawerCover} style={styles.drawerCover}>
-
-          </Image>
-          <List
-            dataArray={datas} renderRow={data =>
-              <ListItem button noBorder onPress={() => { Actions[data.route](); this.props.closeDrawer() }} >
-                <Left>
-                  <Icon active name={data.icon} style={{ color: '#777', fontSize: 26, width: 30 }} />
-                  <Text style={styles.text}>{data.name}</Text>
-                </Left>
-                {(data.types) &&
+        <Image source={drawerCover} style={styles.drawerCover}></Image>
+        <List
+          dataArray={datas} renderRow={data =>
+            <ListItem button noBorder onPress={() => { Actions[data.route](); this.props.closeDrawer() }} >
+              <Left>
+                <Icon active name={data.icon} style={{ color: '#777', fontSize: 26, width: 30 }} />
+                <Text style={styles.text}>{data.name}</Text>
+              </Left>
+              {(data.types) &&
                 <Right style={{ flex: 1 }}>
                   <Badge
                     style={{ borderRadius: 3, height: 25, width: 72, backgroundColor: data.bg }}
@@ -99,10 +95,9 @@ class SideBar extends Component {
                     <Text style={styles.badgeText}>{`${data.types} Types`}</Text>
                   </Badge>
                 </Right>
-                }
-              </ListItem>}
+              }
+            </ListItem>}
           />
-
         </Content>
       </Container>
     );

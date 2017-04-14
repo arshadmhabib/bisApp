@@ -34,48 +34,49 @@ class JummahTimes extends Component {
     if(this.props.mosques[0].khateebs){
       return (
         <Content>
-        <CardItem bordered>
+          <CardItem bordered>
+            <Row>
+              <Col>
+                <Text style={{textAlign: 'center', fontWeight: '500'}}>
+                  Location
+                </Text>
+              </Col>
+              <Col>
+                <Text style={{textAlign: 'center', fontWeight: '500'}}>
+                  Time
+                </Text>
+              </Col>
+              <Col>
+                <Text style={{textAlign: 'center', fontWeight: '500'}}>
+                  Khateeb
+                </Text>
+              </Col>
+            </Row>
+          </CardItem>
+          {this.props.mosques.map(function(masjids, i){
+            return(
+              <CardItem bordered key={i}>
                 <Row>
-                    <Col>
-                      <Text style={{textAlign: 'center', fontWeight: '500'}}>
-                        Location
-                      </Text>
-                    </Col>
-                    <Col>
-                      <Text style={{textAlign: 'center', fontWeight: '500'}}>
-                        Time
-                      </Text>
-                    </Col>
-                    <Col>
-                      <Text style={{textAlign: 'center', fontWeight: '500'}}>
-                        Khateeb
-                      </Text>
-                    </Col>
+                  <Col>
+                    <Text style={{textAlign: 'center'}}>
+                      {masjids.name}
+                    </Text>
+                  </Col>
+                  <Col>
+                    <Text style={{textAlign: 'center'}}>
+                      {masjids.JumuahStart}
+                    </Text>
+                  </Col>
+                  <Col>
+                    <Text style={{textAlign: 'center'}}>
+                      {masjids.khateebs}
+                    </Text>
+                  </Col>
                 </Row>
               </CardItem>
-              {this.props.mosques.map(function(masjids, i){
-                 return(
-                  <CardItem bordered key={i}>
-                    <Row>
-                        <Col>
-                          <Text style={{textAlign: 'center'}}>
-                            {masjids.name}
-                          </Text>
-                        </Col>
-                        <Col>
-                          <Text style={{textAlign: 'center'}}>
-                            {masjids.JumuahStart}
-                          </Text>
-                        </Col>
-                        <Col>
-                          <Text style={{textAlign: 'center'}}>
-                            {masjids.khateebs}
-                          </Text>
-                        </Col>
-                    </Row>
-                  </CardItem>);
-               })}
-          </Content>
+            );
+           })}
+        </Content>
       );
     } else {
       return (<Spinner color="blue" />);

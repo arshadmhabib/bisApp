@@ -20,6 +20,8 @@ class SettingsTab extends Component {
     this.state = {
       mosques: 'Hoover',
     };
+
+    //get stored value
     AsyncStorage.getItem('mosques').then((settingsStr)=>{
       if(settingsStr){
         this.setState({mosques: settingsStr});
@@ -29,6 +31,7 @@ class SettingsTab extends Component {
     });
   }
 
+  //Save current change
   onValueChange(key, value) {
     var obj = {};
   	obj[key] = value;
@@ -55,9 +58,8 @@ class SettingsTab extends Component {
 
         <Content>
         	<Separator bordered noTopBorder>
-                <Text style={{fontSize: 14}}>Default Values</Text>
-            </Separator>
-            <Text>{this.state.data}</Text>
+            <Text style={{fontSize: 14}}>Default Values</Text>
+          </Separator>
           <ListItem icon>
             <Left>
               <Button light>
@@ -98,16 +100,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, bindAction)(SettingsTab);
-
-/*    const SETTINGS_KEY = 'Settings'
-const settingsObj = [
-        {'name':'Business','icon':'cash'},
-        {'name':'Clinic','icon':'medkit'},{'name':'Prayers','icon':'moon'},
-        {'name':'News','icon':'megaphone'},
-        {'name':'Contact','icon':'contact'}];
-AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(settingsObj))
-
-    const SETTINGS_KEY = 'Settings';
-    AsyncStorage.getItem(SETTINGS_KEY).then((settingsStr)=>{
-      this.setState({"tabOrder": JSON.parse(settingsStr)});
-    })*/

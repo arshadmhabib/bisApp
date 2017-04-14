@@ -37,16 +37,17 @@ class TabContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: props.navigationState.name,
+      tab: props.navigationState.name, //get table from router
       tabOrder: [{'name':'Prayers','icon':'moon'},
         {'name':'News','icon':'megaphone'},
         {'name':'Business','icon':'cash'},
         {'name':'Clinic','icon':'medkit'},
-        {'name':'Contact','icon':'contact'}],
+        {'name':'Contact','icon':'contact'}],//order the tabs
       data: [],
     };
   }
 
+  //get current tab
   chooseTab(currentTab, tabName) {
     this.setState({
       tab: currentTab,
