@@ -61,7 +61,9 @@ class TabContainer extends Component {
   render() {
     if(isNaN(this.state.tab)){
       for(let i=0; i<this.state.tabOrder.length; i++){
-        if(this.state.tabOrder[i].name === this.state.tab){
+        if(this.state.tab === 'Start'){
+          this.state.tab = 0;
+        }else if(this.state.tabOrder[i].name === this.state.tab){
           this.state.tab = i;
         }
       }
@@ -73,7 +75,7 @@ class TabContainer extends Component {
             <Image source={require('./../../img/bis.png')} style={{width: 40, height: 40}} />
           </Left>
           <Body>
-            <Title>{this.state.tabOrder[this.state.tab].name}</Title>
+            <Title style={{ color: '#FFF' }}>{this.state.tabOrder[this.state.tab].name}</Title>
           </Body>
           <Right>
             <Button transparent onPress={this.props.openDrawer}>

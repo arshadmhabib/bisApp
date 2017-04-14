@@ -17,7 +17,7 @@ const drawerImage = require('../../../img/BISMobile.png');
 const datas = [
   {
     name: 'Settings',
-    route: 'settings',
+    route: 'Settings',
     icon: 'settings',
     bg: '#DA4437',
   },
