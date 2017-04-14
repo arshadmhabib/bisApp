@@ -26,7 +26,7 @@ class PrayersTab extends Component {
     this.state = {
       dailyPrayersDate: moment(),
       jummahDate: moment().isoWeekday(5),
-      mosque: 'HOOVER',
+      mosque: 'Hoover',
       mosqueList: [{'name': '', 'JumuahStart': '00:00'}],
       adhan: {'Fajr': '00:00', 'Sunrise': '00:00', 'Duhr': '00:00', 'Asr': '00:00', 'Magrib': '00:00','Isha': '00:00'},
       iqamah: {'Fajr': '00:00', 'Sunrise': '00:00', 'Duhr': '00:00', 'Asr': '00:00', 'Magrib': '00:00','Isha': '00:00'},
@@ -69,7 +69,10 @@ class PrayersTab extends Component {
   }
 
   getIqamah(mosque,month,day){
-    fetch("http://aleemstudio.com/MobileDeviceSupport/GetIqamahTimings_v2?id=" + mosque +
+    console.log("http://aleemstudio.com/MobileDeviceSupport/GetIqamahTimings_v2?id=" + mosque.toUpperCase() +
+          "&month=" + (month+1) +
+          "&day=" + day);
+    fetch("http://aleemstudio.com/MobileDeviceSupport/GetIqamahTimings_v2?id=" + mosque.toUpperCase() +
           "&month=" + (month+1) +
           "&day=" + day)
       .then((response) => response.json())
