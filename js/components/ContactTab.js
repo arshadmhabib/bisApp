@@ -25,6 +25,7 @@ class ContactTab extends Component {
     super(props);
     this.state = {
       contacts: [],
+      data: '',
     };
   }
 
@@ -58,7 +59,7 @@ class ContactTab extends Component {
     if(this.state.contacts !== []){
       return (
           <Content style={{ backgroundColor: '#F5F5F5' }} padder>
-
+              <Text>{this.state.data}</Text>
               {this.state.contacts.map(function(contact, i){
 
                 return(

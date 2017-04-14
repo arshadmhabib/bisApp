@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Image, Platform } from 'react-native';
+import { Image, Platform, AsyncStorage } from 'react-native';
 import { Container, Header, Title, Content, Button, Icon, Separator, Text,Right,Body,Left,Picker, ListItem } from 'native-base';
 
 import { openDrawer } from '../actions/drawer';
@@ -25,6 +25,47 @@ class SettingsTab extends Component {
       clinic: 'Tab4',
       contact: 'Tab5',
     };
+    AsyncStorage.getItem('mosques').then((settingsStr)=>{
+      if(settingsStr){
+        this.setState({mosques: settingsStr});
+      }else{
+        AsyncStorage.setItem('mosques', this.state.mosques);
+      }
+    });
+    AsyncStorage.getItem('prayers').then((settingsStr)=>{
+      if(settingsStr){
+        this.setState({prayers: settingsStr});
+        AsyncStorage.setItem('prayers', this.state.prayers);
+      }
+    });
+    AsyncStorage.getItem('news').then((settingsStr)=>{
+      if(settingsStr){
+        this.setState({news: settingsStr});
+      }else{
+        AsyncStorage.setItem('news', this.state.news);
+      }
+    });
+    AsyncStorage.getItem('business').then((settingsStr)=>{
+      if(settingsStr){
+        this.setState({business: settingsStr});
+      }else{
+        AsyncStorage.setItem('business', this.state.business);
+      }
+    });
+    AsyncStorage.getItem('clinic').then((settingsStr)=>{
+      if(settingsStr){
+        this.setState({clinic: settingsStr});
+      }else{
+        AsyncStorage.setItem('clinic', this.state.clinic);
+      }
+    });
+    AsyncStorage.getItem('contact').then((settingsStr)=>{
+      if(settingsStr){
+        this.setState({contact: settingsStr});
+      }else{
+        AsyncStorage.setItem('contact', this.state.contact);
+      }
+    });
   }
 
   onValueChange(key, value) {
@@ -34,11 +75,24 @@ class SettingsTab extends Component {
   	var obj2 = {};
   	Object.keys(settingsStates).map(function(currentState,i) {
   		if(settingsStates[currentState] === value){
-  			obj2[currentState] = '';
+  			obj2[currentState] = 'None';
   		}
   	})
+
   	this.setState(obj2);
   	this.setState(obj);
+  }
+
+  saveSettings(){
+    for(key of Object.keys(this.state)){
+      if(this.state[key] === 'None'){
+        return;
+      }
+    }
+    for(key of Object.keys(this.state)){
+      AsyncStorage.setItem(key, this.state[key]);
+    }
+    console.log('Save Values');
   }
 
   render() {
@@ -62,6 +116,7 @@ class SettingsTab extends Component {
         	<Separator bordered noTopBorder>
                 <Text style={{fontSize: 14}}>Default Values</Text>
             </Separator>
+            <Text>{this.state.data}</Text>
           <ListItem icon>
             <Left>
               <Button light>
@@ -212,6 +267,9 @@ class SettingsTab extends Component {
               </Picker>
             </Right>
           </ListItem>
+          <Button onPress={() => this.saveSettings()} >
+            <Text>Save</Text>
+          </Button>
         </Content>
       </Container>
     );

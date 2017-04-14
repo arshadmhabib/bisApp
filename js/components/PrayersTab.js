@@ -32,6 +32,11 @@ class PrayersTab extends Component {
       iqamah: {'Fajr': '00:00', 'Sunrise': '00:00', 'Duhr': '00:00', 'Asr': '00:00', 'Magrib': '00:00','Isha': '00:00'},
       jummahList: {'':''},
     };
+    AsyncStorage.getItem('mosques').then((settingsStr)=>{
+      if(settingsStr){
+        this.setState({mosque: settingsStr});
+      }
+    });
   }
 
   getJummahSchedule(){
@@ -111,9 +116,9 @@ class PrayersTab extends Component {
               </Row>
             </CardItem>
             <Segment>
-              <Button active={(this.state.mosque === 'WESTSIDE') ? true : false} onPress={() => this.getMosquePrayer('WESTSIDE')}><Text active={(this.state.mosque === 'WESTSIDE') ? true : false}>Westside</Text></Button>
-              <Button active={(this.state.mosque === 'HOOVER') ? true : false} onPress={() => this.getMosquePrayer('HOOVER')}><Text active={(this.state.mosque === 'HOOVER') ? true : false}>Hoover</Text></Button>
-              <Button active={(this.state.mosque === 'HOMEWOOD') ? true : false} onPress={() => this.getMosquePrayer('HOMEWOOD')}><Text active={(this.state.mosque === 'HOMEWOOD') ? true : false}>Homewood</Text></Button>
+              <Button active={(this.state.mosque === 'Westside') ? true : false} onPress={() => this.getMosquePrayer('Westside')}><Text active={(this.state.mosque === 'Westside') ? true : false}>Westside</Text></Button>
+              <Button active={(this.state.mosque === 'Hoover') ? true : false} onPress={() => this.getMosquePrayer('Hoover')}><Text active={(this.state.mosque === 'Hoover') ? true : false}>Hoover</Text></Button>
+              <Button active={(this.state.mosque === 'Homewood') ? true : false} onPress={() => this.getMosquePrayer('Homewood')}><Text active={(this.state.mosque === 'Homewood') ? true : false}>Homewood</Text></Button>
             </Segment>
             <PrayerTimes adhan={this.state.adhan} iqamah={this.state.iqamah}/>
           </Card>
